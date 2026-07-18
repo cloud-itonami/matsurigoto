@@ -1,0 +1,11 @@
+(require '[clojure.test :as t])
+(def suites '[matsurigoto.methods.test-datoms matsurigoto.methods.test-lexicons
+ matsurigoto.methods.test-sign-capability matsurigoto.methods.test-standard
+ matsurigoto.methods.modules.test-benefit-disburse matsurigoto.methods.modules.test-civil-registry
+ matsurigoto.methods.modules.test-corp-registry matsurigoto.methods.modules.test-credential-issue
+ matsurigoto.methods.modules.test-tax-assess matsurigoto.tax-collect.test-contacts
+ matsurigoto.tax-collect.test-datom-emit matsurigoto.tax-collect.test-payment
+ matsurigoto.tax-collect.test-procedures matsurigoto.tax-collect.test-withholding
+ matsurigoto.repository-contract-test])
+(apply require suites)
+(let [r (apply t/run-tests suites)] (System/exit (if (zero? (+ (:fail r) (:error r))) 0 1)))

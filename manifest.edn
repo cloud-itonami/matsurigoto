@@ -1,0 +1,3 @@
+{:actor/id :matsurigoto :actor/did "did:web:etzhayyim.com:matsurigoto"
+ :actor/runtime :cljc :actor/canonical-format :edn
+ :actor/modules [:benefit-disburse :civil-registry :corp-registry :credential-issue :tax-assess]}
