@@ -24,7 +24,7 @@
 
   House style: Python ':…' keyword strings stay strings (all :egov.*/:cofog/*/:bind/* attrs);
   pure fns; file I/O only at the #?(:clj) edge. Closed-vocab gates raise via ex-info."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [clojure.set :as set]
             [matsurigoto.methods.edn :as edn]))
 

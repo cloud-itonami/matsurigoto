@@ -25,7 +25,7 @@
   etzhayyim (principal A) profile is restricted to the non-cash media (see `for-principal`).
 
   House style: result maps stay string-keyed (json.loads shapes); pure fns; stdlib only."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; G1: this module holds NO signing authority and disburses nothing itself.
 (def SERVER-HELD-AUTHORITY false)

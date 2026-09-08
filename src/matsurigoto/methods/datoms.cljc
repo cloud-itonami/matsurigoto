@@ -25,7 +25,7 @@
   gates raise ex-info; the datom-emit ORDER is the literal source order (G3 tx block, then the
   per-module record/assessment block, then the certificate block) — preserved via a vector,
   not a sorted/hashed map (::order is the source line order)."
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])))
 
 (def allowed-operated-by #{":etzhayyim-council" ":adopting-government"})

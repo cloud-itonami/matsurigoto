@@ -8,7 +8,7 @@
 
   House style: maps string-keyed; ':…' keyword strings stay strings; file I/O only at
   the #?(:clj) load-edn edge."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; _TOK = re.compile(r'[\s,]+|;[^\n]*|(\[|\]|\{|\}|"(?:\\.|[^"\\])*"|[^\s,\[\]{}]+)')
 (def ^:private tok-re

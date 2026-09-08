@@ -14,7 +14,7 @@
 
   House style: result maps stay string-keyed; pure fns; stdlib only. The Python __main__
   demo is omitted."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def SERVER-HELD-AUTHORITY false)  ; G1
 
@@ -40,7 +40,7 @@
 (defn- pad
   "Uppercase, replace spaces with filler '<', pad/truncate to n chars."
   [s n]
-  (let [s (-> (str/upper-case s) (str/replace " " "<"))
+  (let [s (-> (str/upper s) (str/replace " " "<"))
         padded (str s (apply str (repeat n "<")))]
     (subs padded 0 n)))
 
@@ -56,7 +56,7 @@
    (when-not (contains? #{"M" "F" "<"} sex)
      (throw (ex-info "sex must be M, F, or < (unspecified)" {})))
    (let [name-field (pad (str surname "<<" given-names) 39)
-         line1 (str "P<" (str/upper-case issuing-state) name-field)
+         line1 (str "P<" (str/upper issuing-state) name-field)
          doc (pad doc-number 9)
          c-doc (mrz-check-digit doc)
          c-dob (mrz-check-digit dob-yymmdd)
@@ -65,7 +65,7 @@
          c-pers (mrz-check-digit pers)
          composite-input (str doc c-doc dob-yymmdd c-dob expiry-yymmdd c-exp pers c-pers)
          c-composite (mrz-check-digit composite-input)
-         line2 (str doc c-doc (str/upper-case nationality) dob-yymmdd c-dob sex
+         line2 (str doc c-doc (str/upper nationality) dob-yymmdd c-dob sex
                     expiry-yymmdd c-exp pers c-pers c-composite)]
      {"line1" line1 "line2" line2
       "check_digits" {"doc" c-doc "dob" c-dob "expiry" c-exp

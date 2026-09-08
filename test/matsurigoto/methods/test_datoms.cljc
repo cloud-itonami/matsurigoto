@@ -11,7 +11,7 @@
   minimal ports of just the functions the Python test calls (assess_from_return /
   assess_income_tax / register_birth / register_incorporation + validate_lei / issue_passport)."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [matsurigoto.methods.datoms :as D]))
 
 ;; ── tax-assess port (assess_income_tax + assess_from_return + JPN.income table) ──
@@ -102,15 +102,15 @@
     false))
 
 (defn- assign-lei [lou entity12]
-  (let [base (str/upper-case (str lou "00" entity12))]
+  (let [base (str/upper (str lou "00" entity12))]
     (str base (compute-lei-check-digits base))))
 
 (defn- register-incorporation [entity-name officers capital articles address jurisdiction sequence]
   (when-not (seq entity-name) (throw (ex-info "incorporation: entity_name required" {})))
   (when-not (seq officers) (throw (ex-info "incorporation: at least one officer required" {})))
   (when (< capital 0) (throw (ex-info "incorporation: capital must be >= 0" {})))
-  (let [registry-number (str (str/upper-case jurisdiction) "-" (format "%08d" sequence))
-        eid (-> (format "%012d" sequence) (subs 0 12) str/upper-case)
+  (let [registry-number (str (str/upper jurisdiction) "-" (format "%08d" sequence))
+        eid (-> (format "%012d" sequence) (subs 0 12) str/upper)
         lei (assign-lei "EZHY" eid)]
     {"record" {"record_id" registry-number "kind" "incorporation" "entity_name" entity-name
                "officers" (vec officers) "capital" capital "jurisdiction" jurisdiction
@@ -137,13 +137,13 @@
             10)))
 
 (defn- mpad [s n]
-  (let [s (str/replace (str/upper-case s) " " "<")]
+  (let [s (str/replace (str/upper s) " " "<")]
     (subs (str s (apply str (repeat n "<"))) 0 n)))
 
 (defn- build-td3-mrz [doc-number issuing-state nationality surname given-names
                       dob sex expiry personal-number]
   (let [name-field (mpad (str surname "<<" given-names) 39)
-        line1 (str "P<" (str/upper-case issuing-state) name-field)
+        line1 (str "P<" (str/upper issuing-state) name-field)
         doc (mpad doc-number 9)
         c-doc (mrz-check-digit doc)
         c-dob (mrz-check-digit dob)
@@ -152,7 +152,7 @@
         c-pers (mrz-check-digit pers)
         composite (str doc c-doc dob c-dob expiry c-exp pers c-pers)
         c-comp (mrz-check-digit composite)
-        line2 (str doc c-doc (str/upper-case nationality) dob c-dob sex
+        line2 (str doc c-doc (str/upper nationality) dob c-dob sex
                    expiry c-exp pers c-pers c-comp)]
     {"line1" line1 "line2" line2
      "check_digits" {"doc" c-doc "dob" c-dob "expiry" c-exp "personal" c-pers "composite" c-comp}}))

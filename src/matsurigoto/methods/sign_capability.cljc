@@ -31,7 +31,7 @@
 
   House style: artifacts are Clojure maps with the Python string keys; Python ':…' strings stay
   strings; closed-vocab/gate violations → ex-info; pure fns; hashing at the host edge only."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def SIGNER-HELD-PRIVATE-KEY
   "G1 / ADR-2605231525 — matsurigoto holds no private key."
