@@ -5,7 +5,7 @@
   Keywords stay ':…' STRINGS (root CLAUDE.md convention), so seed records key on string
   attrs exactly as the Python tests do."
   (:require [clojure.test :refer [deftest is]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [matsurigoto.methods.standard :as S]))
 
 ;; resolve the actor data dir from this test file's location (file I/O at the #?(:clj) edge)
@@ -155,5 +155,5 @@
     (is (= (get cov "divisions_total") 10))
     (is (>= (get cov "services_total") 15))
     (let [report (S/render-report DOC cov (S/validate DOC))]
-      (is (str/includes? (str/lower-case report) "coverage"))
+      (is (str/includes? (str/lower report) "coverage"))
       (is (str/includes? report "COFOG")))))

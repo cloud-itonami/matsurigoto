@@ -13,7 +13,7 @@
 
   House style: result maps stay string-keyed (json.loads shapes); pure fns; stdlib only.
   The Python __main__ demo is omitted."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; G1: this module holds NO signing authority and signs no certificate.
 (def SERVER-HELD-AUTHORITY false)
@@ -33,7 +33,7 @@
   [s]
   (if (empty? s)
     s
-    (str (str/upper-case (subs s 0 1)) (str/lower-case (subs s 1)))))
+    (str (str/upper (subs s 0 1)) (str/lower (subs s 1)))))
 
 (defn- unsigned-certificate
   "A W3C-VC certificate SKELETON. G1: unsigned — the governing organ signs with ITS key."

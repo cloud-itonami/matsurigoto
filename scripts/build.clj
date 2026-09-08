@@ -13,7 +13,7 @@
 ;;   bb wasm/build.clj
 (require '[babashka.fs :as fs]
          '[babashka.process :as p]
-         '[clojure.string :as str])
+         '[kotoba.lang.text :as str])
 
 (def here (fs/parent (fs/absolutize *file*)))
 (def wit-dir (str (fs/path here "../../../00-contracts/wit/matsurigoto")))
@@ -27,7 +27,7 @@
    "benefit-disburse" "benefit_disburse_app"})
 
 (defn kebab->camel [s]
-  (str/replace s #"-([a-z])" (fn [[_ c]] (str/upper-case c))))
+  (str/replace s #"-([a-z])" (fn [[_ c]] (str/upper c))))
 
 ;; componentize-py in an isolated venv (PEP-668 environments block global pip).
 (def venv (or (System/getenv "CPY_VENV") "/tmp/cpy-venv"))

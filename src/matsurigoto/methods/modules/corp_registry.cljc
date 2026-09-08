@@ -14,7 +14,7 @@
 
   House style: result maps stay string-keyed; pure fns; stdlib only. The MOD-97-10 arithmetic
   runs over big integers (BigInteger). The Python __main__ demo is omitted."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def SERVER-HELD-AUTHORITY false)  ; G1
 
@@ -60,7 +60,7 @@
      (throw (ex-info "LOU prefix must be 4 chars" {})))
    (when (not= (count entity-id12) 12)
      (throw (ex-info "entity id must be 12 chars" {})))
-   (let [base (str/upper-case (str lou-prefix "00" entity-id12))]
+   (let [base (str/upper (str lou-prefix "00" entity-id12))]
      (str base (compute-lei-check-digits base)))))
 
 ;; ── registry records ──
@@ -96,13 +96,13 @@
      (throw (ex-info "incorporation: address required" {})))
    (when (< sequence 0)
      (throw (ex-info "incorporation: sequence must be >= 0" {})))
-   (let [registry-number (str (str/upper-case jurisdiction) "-" (zero-pad sequence 8))
+   (let [registry-number (str (str/upper jurisdiction) "-" (zero-pad sequence 8))
          ;; eid = (entity_id12 or f"{sequence:012d}")[:12].rjust(12,"0").upper()
          base-eid (or entity-id12 (zero-pad sequence 12))
          eid (-> base-eid
                  (#(subs % 0 (min 12 (count %))))
                  (#(str (apply str (repeat (max 0 (- 12 (count %))) "0")) %))
-                 (str/upper-case))
+                 (str/upper))
          lei (assign-lei lou-prefix eid)
          record {"record_id" registry-number
                  "kind" "incorporation"

@@ -1,7 +1,7 @@
 ;; matsurigoto 政 — tax-collect / Datom emit + module facade の conformance test。ADR-2606062300。
 (ns matsurigoto.tax-collect.test-datom-emit
   (:require [clojure.test :refer [deftest is testing run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [matsurigoto.tax-collect.payment :as p]
             [matsurigoto.tax-collect.datom-emit :as d]
             [matsurigoto.tax-collect.tax-collect :as tc]))

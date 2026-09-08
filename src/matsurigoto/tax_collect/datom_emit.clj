@@ -7,7 +7,7 @@
 ;; G1: :gensen.remit/server-held-authority は常に false。:proof は付与しない (署名なし)。
 ;; G8: 実際の canonical Datom log への ingest は Council+operator gated → ingest! は raise。
 (ns matsurigoto.tax-collect.datom-emit
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def ^:const SERVER-HELD-AUTHORITY false)
 

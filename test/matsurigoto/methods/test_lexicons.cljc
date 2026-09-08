@@ -12,7 +12,7 @@
   is behind #?(:clj ...). *file*-relative paths up to the repo root, exactly like the Python
   test used REPO = HERE.parent.parent.parent. The __main__ runner is omitted."
   (:require [clojure.test :refer [deftest is run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [matsurigoto.methods._edn :as edn]
             [matsurigoto.methods.datoms :as D]
             [matsurigoto.methods.sign-capability :as S]

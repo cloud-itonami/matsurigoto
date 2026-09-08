@@ -7,7 +7,7 @@
   to the exact map that call produces (taxable 1,000,000 × flat 20% → 200000.0 assessed):
   {\"assessed_amount\" 200000.0 \"currency\" \"XXX\" \"proof\" nil
    \"server_held_authority\" false \"status\" \"assessed-unsigned\"}."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.lang.text] [clojure.test :refer [deftest is]]
             [matsurigoto.methods.sign-capability :as S]))
 
 (def COUNCIL "did:web:etzhayyim.com:council:safe")
@@ -33,7 +33,7 @@
                  {:signer-did COUNCIL :authority-mode ":sovereign-governance"
                   :signature "0xSAFE" :signed-at AT})]
     (is (= (get-in signed ["proof" "signer_did"]) COUNCIL))
-    (is (not (clojure.string/includes? (get signed "status") "unsigned")))
+    (is (not (kotoba.lang.text/includes? (get signed "status") "unsigned")))
     (is (= (S/verify-proof signed) true))))
 
 (deftest test-principal-b-state-signs-with-own-key

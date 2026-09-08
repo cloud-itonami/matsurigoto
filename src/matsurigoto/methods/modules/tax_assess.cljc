@@ -21,7 +21,7 @@
   load-rate-tables (R1.D) merges per-jurisdiction tables from data/rates/*.edn into the
   RATE-TABLES atom at namespace load — the embedded JPN/FLAT20 remain as fallback."
   (:require [matsurigoto.methods._edn :as edn]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             #?(:clj [clojure.java.io :as io])))
 
 ;; G1: this module holds NO signing authority. It computes; the governing organ signs.
