@@ -92,7 +92,7 @@ are recorded in each profile's `:country-profile/notes`, never silently bound.
 
 ```
 ./deploy/run_tests.sh                        # python slices (93 + WIT: 19 std +10 datom +10 sign +19 tax +11 civil +11 corp +13 cred)
-bb test:matsurigoto                          # Clojure tax-collect 源泉徴収納付 (44 tests / 157 assertions)
+kbb -M:test:matsurigoto                          # Clojure tax-collect 源泉徴収納付 (44 tests / 157 assertions)
 cd methods && python3 standard.py            # validate + write out/coverage.md
 cd methods/modules && python3 tax_assess.py  # demo an executable slice
 ```
@@ -118,7 +118,7 @@ cd methods/modules && python3 tax_assess.py  # demo an executable slice
   案内; 個別税務署(約520署)は `ingest-tax-offices` で operator が出典付き取込 = G5/G7) ·
   `datom_emit` (EAVT `:gensen.*` canonical state) ·
   `tax_collect` (module facade)。Backs `tax.withholding.remit`. **46 tests / 168 assertions** —
-  run `bb test:matsurigoto`.
+  run `kbb -M:test:matsurigoto`.
 - **`civil-registry`** — UN CRVS validation + **append-only** record construction (G5, 非終末論)
   for birth/death/marriage + residency, unsigned VC certificates (11/11). Backs `civil.*` +
   `residency.*` (住所管理・戸籍).
@@ -149,7 +149,7 @@ Path from R0 reference → deployable substrate, in 4 dimensions. Landed so far 
 - **R1.A WIT contract** — `00-contracts/wit/matsurigoto/egov.wit` (validated by `wasm-tools`, 5
   worlds). Each module world exports ONLY its service interface; **none exports `sign`** — that is
   the structural G1 (no-operator-master-key) guarantee. **componentize-py build → CID/IPFS: DONE
-  for all 5 modules** (`wasm/`, `bb build.clj` + `node verify.mjs`; CIDs
+  for all 5 modules** (`wasm/`, `kbb build.cljk` + `node verify.mjs`; CIDs
   recorded per-module in `wasm/*.meta.json`) — SBOM emission (ADR-2606036000) is still ahead.
 - **R1.B kotoba Datom persistence** — `contracts/schemas/egov-execution-ontology.kotoba.edn`
   (`:egov.tx/* :egov.record/* :egov.assessment/* :egov.cert/*`, append-only, as-of) +
@@ -221,7 +221,7 @@ The seed (all LANDED):
   + `on-kse etzhayyim/actor/matsurigoto/publish`, `:requires #{:cap/kqe :cap/atproto}`).
 
 **Division of labor (zero-knowledge)**: the **planter** authors the in-repo seed (holds no key);
-the **operator** (founder) runs `bb murakumo deploy kotoba.app.edn <node>`
+the **operator** (founder) runs `kbb -M:murakumo deploy kotoba.app.edn <node>`
 with `MURAKUMO_OPERATOR_SEED` + Tailscale and exercises the Council gate for the first live post;
 the **actor's mesh runtime** self-generates/self-custodies its `did:key`, presents a member CACAO
 leash (ADR-2606111400), and signs its own posts. The server never signs. For principal B
@@ -229,8 +229,8 @@ leash (ADR-2606111400), and signs its own posts. The server never signs. For pri
 live broadcast is **Council Lv6+ + operator + external-authority-signature** gated (§1.12 / G11).
 
 ```bash
-bb -e '(load-file "methods/social.cljc")'                 # projection loads green
-bb -e '(load-file "cells/social_post/state_machine.cljc")' # membrane loads green
+kbb -e '(load-file "methods/social.cljc")'                 # projection loads green
+kbb -e '(load-file "cells/social_post/state_machine.cljc")' # membrane loads green
 # operator step (zero-knowledge — needs MURAKUMO_OPERATOR_SEED + Tailscale):
 #   bb murakumo deploy kotoba.app.edn asher
 ```
