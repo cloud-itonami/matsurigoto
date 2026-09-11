@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; matsurigoto wasm build — bb-native (Clojure / babashka; no shell). ADR-2606072802.
 ;; Per the repo-wide rule (root CLAUDE.md §"Operational code = clj/bb"): first-party
 ;; tooling is clj/bb, NOT shell. Shelling out to system binaries via babashka.process
@@ -10,7 +10,7 @@
 ;; same componentize-py path as the watatsuna precedent, ADR-2606014600).
 ;; Requires: python3 (for componentize-py via venv), node/npx (jco), ipfs, wasm-tools.
 ;;
-;;   bb wasm/build.clj
+;;   kbb wasm/build.cljk
 (require '[babashka.fs :as fs]
          '[babashka.process :as p]
          '[kotoba.lang.text :as str])

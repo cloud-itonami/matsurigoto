@@ -18,7 +18,7 @@
 ;;                               給与月額表の別表 (年次改定) は data EDN の :representative パラメータ。
 ;;   G3 authority-bearing      : 納付主体 (:operated-by) は呼び出し側が渡す。本体は主張しない。
 ;;
-;; pure functions, no I/O, no network. babashka-runnable (bb test:matsurigoto).
+;; pure functions, no I/O, no network. babashka-runnable (kbb -M:test:matsurigoto).
 (ns matsurigoto.tax-collect.withholding
   (:require [clojure.edn :as edn]))
 
