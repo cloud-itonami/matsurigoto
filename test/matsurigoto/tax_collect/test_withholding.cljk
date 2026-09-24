@@ -3,7 +3,7 @@
 ;; 給与月額表は :representative パラメータのため「アルゴリズム合成」のみ検証 (値は非主張)。
 (ns matsurigoto.tax-collect.test-withholding
   (:require [kotoba.test :refer [deftest is testing run-tests]]
-            [clojure.edn :as edn]
+            [kotoba.lang.edn :as edn]
             [matsurigoto.tax-collect.withholding :as w]))
 
 ;; jpn-rates.edn is now Datomic/Datascript tx-data (ADR-2607100030 fan-out): a single

@@ -6,7 +6,7 @@
 ;; G2 spec-derived: 所得税法 + 同施行規則 + 国税庁様式 (registry の :statute / :source-url)。
 ;; G5 sourcing-honest: registry は data/procedures/jpn-gensen.edn (各手続きに出典)。
 (ns matsurigoto.tax-collect.procedures
-  (:require [clojure.edn :as edn]
+  (:require [kotoba.lang.edn :as edn]
             [matsurigoto.tax-collect.jp-calendar :as cal])
   (:import [java.time LocalDate]))
 

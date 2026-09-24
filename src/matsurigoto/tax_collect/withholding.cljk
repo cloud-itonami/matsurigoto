@@ -20,7 +20,7 @@
 ;;
 ;; pure functions, no I/O, no network. babashka-runnable (kbb -M:test:matsurigoto).
 (ns matsurigoto.tax-collect.withholding
-  (:require [clojure.edn :as edn]))
+  (:require [kotoba.lang.edn :as edn]))
 
 ;; G1: this module holds NO signing authority.
 (def ^:const SERVER-HELD-AUTHORITY false)
