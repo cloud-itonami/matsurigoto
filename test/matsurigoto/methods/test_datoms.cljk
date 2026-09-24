@@ -10,7 +10,7 @@
   (also string-keyed) consumes them byte-for-byte the same. The module helpers below are
   minimal ports of just the functions the Python test calls (assess_from_return /
   assess_income_tax / register_birth / register_incorporation + validate_lei / issue_passport)."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [kotoba.lang.text :as str]
             [matsurigoto.methods.datoms :as D]))
 

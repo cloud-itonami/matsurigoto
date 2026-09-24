@@ -1,7 +1,7 @@
 (ns matsurigoto.methods.modules.test-civil-registry
   "test_civil_registry.py — conformance tests for the civil-registry module.
   1:1 Clojure port (stdlib unittest-style → clojure.test). The __main__ runner is omitted."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [matsurigoto.methods.modules.civil-registry :as C]))
 
 (def NOW "2026-06-05T00:00:00Z")

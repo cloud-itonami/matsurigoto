@@ -1,6 +1,6 @@
 ;; matsurigoto 政 — tax-collect / 連絡先 registry の conformance test。ADR-2606062300。
 (ns matsurigoto.tax-collect.test-contacts
-  (:require [clojure.test :refer [deftest is testing run-tests]]
+  (:require [kotoba.test :refer [deftest is testing run-tests]]
             [matsurigoto.tax-collect.contacts :as c]))
 
 (def ^:private REG (c/load-registry))

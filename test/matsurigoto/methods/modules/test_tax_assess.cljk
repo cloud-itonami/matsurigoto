@@ -4,7 +4,7 @@
 
   The income-tax assertions reproduce the published JP 速算表 exactly. The Python __main__
   runner is omitted."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [matsurigoto.methods.modules.tax-assess :as T]))
 
 (deftest test-no-server-authority

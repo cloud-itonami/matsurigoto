@@ -1,6 +1,6 @@
 ;; matsurigoto 政 — tax-collect / 納付処理 + 祝日カレンダーの conformance test。ADR-2606062300。
 (ns matsurigoto.tax-collect.test-payment
-  (:require [clojure.test :refer [deftest is testing run-tests]]
+  (:require [kotoba.test :refer [deftest is testing run-tests]]
             [matsurigoto.tax-collect.jp-calendar :as cal]
             [matsurigoto.tax-collect.payment :as p]))
 

@@ -11,7 +11,7 @@
   json.loads shapes); the schema EDN via the sibling matsurigoto.methods._edn reader. File I/O
   is behind #?(:clj ...). *file*-relative paths up to the repo root, exactly like the Python
   test used REPO = HERE.parent.parent.parent. The __main__ runner is omitted."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [kotoba.lang.text :as str]
             [matsurigoto.methods._edn :as edn]
             [matsurigoto.methods.datoms :as D]
