@@ -6,7 +6,7 @@
 ;;   :pending-verification / :pending-live-ingest とし、出典 URL を示す。fabrication を避ける。
 ;; G1 何も送信しない (案内のみ)。個人名・個別納税者情報は扱わない (公的窓口の部門のみ)。
 (ns matsurigoto.tax-collect.contacts
-  (:require [clojure.edn :as edn]))
+  (:require [kotoba.lang.edn :as edn]))
 
 (def ^:private DEFAULT-REGISTRY-PATH
   "data/contacts/jpn-nta.edn")
