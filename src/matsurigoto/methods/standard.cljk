@@ -25,7 +25,7 @@
   House style: Python ':…' keyword strings stay strings (all :egov.*/:cofog/*/:bind/* attrs);
   pure fns; file I/O only at the #?(:clj) edge. Closed-vocab gates raise via ex-info."
   (:require [kotoba.lang.text :as str]
-            [clojure.set :as set]
+            [kotoba.lang.coll :as set]
             [matsurigoto.methods.edn :as edn]))
 
 ;; ── named transactional domains the e-gov standard must cover (user request) ──
