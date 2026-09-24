@@ -1,4 +1,4 @@
-(require '[clojure.test :as t])
+(require '[kotoba.test :as t])
 (def suites '[matsurigoto.methods.test-datoms matsurigoto.methods.test-lexicons
  matsurigoto.methods.test-sign-capability matsurigoto.methods.test-standard
  matsurigoto.methods.modules.test-benefit-disburse matsurigoto.methods.modules.test-civil-registry

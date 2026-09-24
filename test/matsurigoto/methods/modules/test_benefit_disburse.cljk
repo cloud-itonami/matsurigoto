@@ -1,6 +1,6 @@
 (ns matsurigoto.methods.modules.test-benefit-disburse
   "Conformance tests for the benefit-disburse module."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [matsurigoto.methods.modules.benefit-disburse :as B]))
 
 (deftest test-no-server-authority-certificate-unsigned

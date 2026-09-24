@@ -3,7 +3,7 @@
   1:1 Clojure port (stdlib unittest-style → clojure.test).
 
   The LEI tests exercise the real ISO 7064 MOD 97-10 checksum. The __main__ runner is omitted."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [matsurigoto.methods.modules.corp-registry :as R]))
 
 (deftest test-no-server-authority-certificate-unsigned

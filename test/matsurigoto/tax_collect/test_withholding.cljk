@@ -2,7 +2,7 @@
 ;; 法令・国税庁合計税率表に基づく確定値 (報酬/配当/利子/退職/復興2.1%) を厳密に検証する。
 ;; 給与月額表は :representative パラメータのため「アルゴリズム合成」のみ検証 (値は非主張)。
 (ns matsurigoto.tax-collect.test-withholding
-  (:require [clojure.test :refer [deftest is testing run-tests]]
+  (:require [kotoba.test :refer [deftest is testing run-tests]]
             [clojure.edn :as edn]
             [matsurigoto.tax-collect.withholding :as w]))
 

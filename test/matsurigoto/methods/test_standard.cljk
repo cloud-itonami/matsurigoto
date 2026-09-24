@@ -4,7 +4,7 @@
 
   Keywords stay ':…' STRINGS (root CLAUDE.md convention), so seed records key on string
   attrs exactly as the Python tests do."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [kotoba.lang.text :as str]
             [matsurigoto.methods.standard :as S]))
 
