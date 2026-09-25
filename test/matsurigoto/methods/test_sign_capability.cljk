@@ -7,7 +7,7 @@
   to the exact map that call produces (taxable 1,000,000 × flat 20% → 200000.0 assessed):
   {\"assessed_amount\" 200000.0 \"currency\" \"XXX\" \"proof\" nil
    \"server_held_authority\" false \"status\" \"assessed-unsigned\"}."
-  (:require [kotoba.lang.text] [kotoba.test :refer [deftest is]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.lang.text] [kotoba.test :refer [deftest is]]
             [matsurigoto.methods.sign-capability :as S]))
 
 (def COUNCIL "did:web:etzhayyim.com:council:safe")
@@ -26,7 +26,7 @@
 
 (deftest test-server-side-signing-always-raises
   ;; The structural no-server-key guarantee.
-  (is (thrown? clojure.lang.ExceptionInfo (S/sign-server-side (unsigned)))))
+  (is (thrown? kerror/ExceptionInfo (S/sign-server-side (unsigned)))))
 
 (deftest test-principal-a-council-signs
   (let [signed (S/attach-external-proof (unsigned)
@@ -44,20 +44,20 @@
 
 (deftest test-principal-a-rejects-non-council-signer
   ;; Sovereign acts must be signed by a Council organ, not an arbitrary did.
-  (is (thrown? clojure.lang.ExceptionInfo
+  (is (thrown? kerror/ExceptionInfo
         (S/attach-external-proof (unsigned)
           {:signer-did STATE :authority-mode ":sovereign-governance"
            :signature "0xX" :signed-at AT}))))
 
 (deftest test-principal-b-rejects-etzhayyim-holding-state-key
   ;; etzhayyim never holds the adopting state's key — an etzhayyim did can't sign a state act.
-  (is (thrown? clojure.lang.ExceptionInfo
+  (is (thrown? kerror/ExceptionInfo
         (S/attach-external-proof (unsigned)
           {:signer-did "did:web:etzhayyim.com:worker" :authority-mode ":supplied-to-state"
            :signature "0xX" :signed-at AT}))))
 
 (deftest test-empty-signature-refused
-  (is (thrown? clojure.lang.ExceptionInfo
+  (is (thrown? kerror/ExceptionInfo
         (S/attach-external-proof (unsigned)
           {:signer-did COUNCIL :authority-mode ":sovereign-governance"
            :signature "" :signed-at AT}))))
@@ -66,7 +66,7 @@
   (let [signed (S/attach-external-proof (unsigned)
                  {:signer-did COUNCIL :authority-mode ":sovereign-governance"
                   :signature "0xSAFE" :signed-at AT})]
-    (is (thrown? clojure.lang.ExceptionInfo
+    (is (thrown? kerror/ExceptionInfo
           (S/attach-external-proof signed
             {:signer-did COUNCIL :authority-mode ":sovereign-governance"
              :signature "0xAGAIN" :signed-at AT})))))

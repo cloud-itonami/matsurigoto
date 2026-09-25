@@ -17,7 +17,7 @@
             [matsurigoto.methods.datoms :as D]
             [matsurigoto.methods.sign-capability :as S]
             [matsurigoto.methods.modules.tax-assess :as tax]
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 ;; ── minimal JSON reader (subset sufficient for lexicon JSONs); maps string-keyed ──
 (declare json-value)
@@ -96,7 +96,7 @@
 ;; 20-actors → root) ──
 #?(:clj
    (def ^:private repo
-     (-> *file* io/file .getParentFile .getParentFile .getParentFile .getParentFile)))
+     (-> *file* io/file io/parent-file io/parent-file io/parent-file io/parent-file)))
 
 #?(:clj
    (def ^:private lex-dir

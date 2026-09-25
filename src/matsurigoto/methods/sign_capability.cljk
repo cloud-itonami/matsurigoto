@@ -31,7 +31,7 @@
 
   House style: artifacts are Clojure maps with the Python string keys; Python ':…' strings stay
   strings; closed-vocab/gate violations → ex-info; pure fns; hashing at the host edge only."
-  (:require [kotoba.lang.text :as str]))
+  (:require [kotoba.bytes :as kbytes] [kotoba.lang.text :as str]))
 
 (def SIGNER-HELD-PRIVATE-KEY
   "G1 / ADR-2605231525 — matsurigoto holds no private key."
@@ -107,7 +107,7 @@
      "hashlib.sha256(s.encode('utf-8')).hexdigest() — host JVM MessageDigest at the :clj edge."
      [^String s]
      (let [md (java.security.MessageDigest/getInstance "SHA-256")
-           bs (.digest md (.getBytes s "UTF-8"))
+           bs (.digest md (kbytes/utf8-bytes s))
            sb (StringBuilder.)]
        (doseq [b bs]
          (.append sb (format "%02x" (bit-and (long b) 0xff))))

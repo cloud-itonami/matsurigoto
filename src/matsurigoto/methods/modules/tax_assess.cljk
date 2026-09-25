@@ -22,7 +22,7 @@
   RATE-TABLES atom at namespace load — the embedded JPN/FLAT20 remain as fallback."
   (:require [matsurigoto.methods._edn :as edn]
             [kotoba.lang.text :as str]
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 ;; G1: this module holds NO signing authority. It computes; the governing organ signs.
 (def SERVER-HELD-AUTHORITY false)
@@ -53,7 +53,7 @@
    (defn- default-rates-dir []
      ;; pathlib.Path(__file__).resolve().parent.parent.parent / "data" / "rates"
      ;; from methods/modules/tax_assess → matsurigoto/data/rates
-     (-> *file* io/file .getParentFile .getParentFile .getParentFile .getParentFile .getParentFile
+     (-> *file* io/file io/parent-file io/parent-file io/parent-file io/parent-file io/parent-file
          (io/file "data" "rates"))))
 
 (defn load-rate-tables
@@ -66,11 +66,11 @@
   ([directory]
    #?(:clj
       (let [dir (io/file directory)]
-        (if-not (.exists dir)
+        (if-not (io/exists? dir)
           0
-          (let [files (->> (.listFiles dir)
-                           (filter #(str/ends-with? (.getName ^java.io.File %) ".edn"))
-                           (sort-by #(.getName ^java.io.File %)))]
+          (let [files (->> (io/list-files dir)
+                           (filter #(str/ends-with? (io/file-name %) ".edn"))
+                           (sort-by #(io/file-name %)))]
             (reduce
              (fn [n f]
                (let [doc (try (edn/load-edn f) (catch Exception _ ::err))]
