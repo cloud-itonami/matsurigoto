@@ -10,7 +10,7 @@
   (also string-keyed) consumes them byte-for-byte the same. The module helpers below are
   minimal ports of just the functions the Python test calls (assess_from_return /
   assess_income_tax / register_birth / register_incorporation + validate_lei / issue_passport)."
-  (:require [kotoba.test :refer [deftest is]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is]]
             [kotoba.lang.text :as str]
             [matsurigoto.methods.datoms :as D]))
 
@@ -205,13 +205,13 @@
 (deftest test-g1-rejects-a-signed-artifact
   (let [out0 (assess-from-return 1000000 0 "FLAT20.income")
         out (assoc-in out0 ["receipt" "proof"] "forged-sig")] ; simulate a signed artifact
-    (is (thrown? clojure.lang.ExceptionInfo
+    (is (thrown? kerror/ExceptionInfo
                  (D/assessment-datoms out "t5" (assoc TX :service "tax.income.file"))))))
 
 (deftest test-g3-rejects-unknown-operator
   (let [out (assess-from-return 1000000 0 "FLAT20.income")
         bad (assoc TX :operated-by ":the-platform")]
-    (is (thrown? clojure.lang.ExceptionInfo
+    (is (thrown? kerror/ExceptionInfo
                  (D/assessment-datoms out "t6" (assoc bad :service "tax.income.file"))))))
 
 (deftest test-g3-both-principals-accepted
@@ -228,7 +228,7 @@
 (deftest test-g2-requires-spec-basis
   (let [out (assess-from-return 1000000 0 "FLAT20.income")
         bad (assoc TX :spec-basis "")]
-    (is (thrown? clojure.lang.ExceptionInfo
+    (is (thrown? kerror/ExceptionInfo
                  (D/assessment-datoms out "t7" (assoc bad :service "s"))))))
 
 (deftest test-ingest-batch-dry-run-body
@@ -240,5 +240,5 @@
     (is (= (count ds) (get body "count")))))
 
 (deftest test-g8-live-publish-is-gated
-  (is (thrown? clojure.lang.ExceptionInfo
+  (is (thrown? kerror/ExceptionInfo
                (D/kg-ingest-batch [] {:published true}))))

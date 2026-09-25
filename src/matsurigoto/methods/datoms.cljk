@@ -26,7 +26,7 @@
   per-module record/assessment block, then the certificate block) — preserved via a vector,
   not a sorted/hashed map (::order is the source line order)."
   (:require [kotoba.lang.text :as str]
-            #?(:clj [clojure.java.io :as io])))
+            #?(:clj [kotoba.io :as io])))
 
 (def allowed-operated-by #{":etzhayyim-council" ":adopting-government"})
 (def allowed-authority-mode #{":sovereign-governance" ":supplied-to-state"})
@@ -209,7 +209,7 @@
      module ports live in the test ns, so this -main builds a self-contained demo block."
      [& argv]
      (let [argv (vec argv)
-           here (-> *file* io/file .getParentFile .getParentFile .getParentFile .getParentFile)
+           here (-> *file* io/file io/parent-file io/parent-file io/parent-file io/parent-file)
            outdir (if (some #{"--out"} argv)
                     (io/file (nth argv (inc (.indexOf argv "--out"))))
                     (io/file here "out"))
@@ -223,7 +223,7 @@
                                   :as-of "2026-06-06T00:00:00Z" :spec-basis "JP 速算表"})
            body (kg-ingest-batch ds)
            outf (io/file outdir "egov-datoms.kotoba.edn")]
-       (.mkdirs outdir)
+       (io/mkdirs outdir)
        (spit outf (emit ds))
        (println (str (get body "count") " datoms, published=" (get body "published")))
        0)))
