@@ -3,7 +3,7 @@
 **DID** (planned): `did:web:etzhayyim.com:actor:matsurigoto` · **Tier**: B · **Status**: R0 ·
 **ADR**: 2606062300 (proposed)
 
-**Read the root `/CLAUDE.md` Charter + substrate rules first.** matsurigoto-specific
+**Read the root `/AGENTS.md` Charter + substrate rules first.** matsurigoto-specific
 invariants below make the Charter concrete for this actor; they weaken nothing.
 
 ## The one-sentence identity

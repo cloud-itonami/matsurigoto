@@ -5,7 +5,7 @@
 ;; 復興特別所得税の (1) 源泉徴収税額計算 → (2) 納付書組立・納期限・加算税延滞税 → (3) 政府手続き →
 ;; (4) 問い合わせ先 → (5) kotoba Datom 化、を一つに束ねる。
 ;;
-;; 全モジュール共通の invariant (matsurigoto CLAUDE.md):
+;; 全モジュール共通の invariant (matsurigoto AGENTS.md):
 ;;   SERVER-HELD-AUTHORITY = false (G1, 何も署名しない) · solve() は raise (live 納付は
 ;;   Council+operator gated, G8) · spec-derived (G2) · operated-by を呼び出し側が渡す (G3)。
 (ns matsurigoto.tax-collect.tax-collect

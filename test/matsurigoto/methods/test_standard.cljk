@@ -2,7 +2,7 @@
   "Tests for the COFOG-based e-gov service standard (matsurigoto 政, ADR-2606062300).
   1:1 Clojure port of methods/test_standard.py. Auto-discovered by etzhayyim.tools.discovery.
 
-  Keywords stay ':…' STRINGS (root CLAUDE.md convention), so seed records key on string
+  Keywords stay ':…' STRINGS (root AGENTS.md convention), so seed records key on string
   attrs exactly as the Python tests do."
   (:require [kotoba.test :refer [deftest is]]
             [kotoba.lang.text :as str]
