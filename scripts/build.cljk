@@ -1,6 +1,6 @@
 #!/usr/bin/env kbb
 ;; matsurigoto wasm build — bb-native (Clojure / babashka; no shell). ADR-2606072802.
-;; Per the repo-wide rule (root CLAUDE.md §"Operational code = clj/bb"): first-party
+;; Per the repo-wide rule (root AGENTS.md §"Operational code = clj/bb"): first-party
 ;; tooling is clj/bb, NOT shell. Shelling out to system binaries via babashka.process
 ;; (componentize-py / wasm-tools / npx / ipfs) is allowed — only the orchestration
 ;; logic itself moves out of bash.

@@ -6,7 +6,7 @@
   STRINGS, NOT as Clojure keywords. standard.py / the charter-invariant tests key
   every COFOG / service / profile record on string keys (\":egov.service/id\",
   \":cofog/code\", \":country-profile/iso3\", …) and the Python `:`-strings stay
-  strings (root CLAUDE.md convention) — so the loader must yield the same string
+  strings (root AGENTS.md convention) — so the loader must yield the same string
   shape the Python `load_edn` does, byte-for-byte, or the standard validator/coverage
   would key on the wrong thing.
 
